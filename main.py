@@ -1,5 +1,6 @@
 import pygame
 from constants import *
+from player import *
 
 def main():
     pygame.init()
@@ -10,6 +11,14 @@ def main():
     # delta time
     dt = 0
 
+    # initialize player
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
+
+    # create groups
+    updatable = pygame.sprite.Group() # all updatable objects
+    drawable = pygame.sprite.Group() # all drawable objects
+
+    player.containers = (updatable, drawable)
 
     # Game loop
     while True:
@@ -20,6 +29,10 @@ def main():
 
         # fill the game screen
         screen.fill("black")
+        # draw player
+        player.draw(screen)
+        # update movement
+        player.update(dt)
         # re-draw game screen
         pygame.display.flip()
         # get delta time and limit fps
