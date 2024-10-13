@@ -58,9 +58,8 @@ def main():
            # shot collision
             for bullet in shots:
                 if rock.collides(bullet):
-                    bullet.kill()
-                    rock.kill()
- 
+                    rock.split()
+
         # re-draw game screen
         pygame.display.flip()
         # get delta time and limit fps
