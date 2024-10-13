@@ -1,3 +1,4 @@
+import sys
 import pygame
 from constants import *
 from player import Player
@@ -43,6 +44,11 @@ def main():
         # update movement
         for object in updatable:
             object.update(dt)
+        # check for collisions
+        for object in asteroids:
+            if player.collides(object):
+                print("Game over!")
+                sys.exit()
         # re-draw game screen
         pygame.display.flip()
         # get delta time and limit fps
